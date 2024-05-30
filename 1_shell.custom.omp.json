@@ -12,13 +12,13 @@
             "display_host": true
           },
           "style": "diamond",
-          "template": "{{ .UserName }} <#ffffff>on</>",
+          "template": "{{ .UserName }}@{{ .HostName }} <#ffffff>|</>",
           "type": "session"
         },
         {
           "foreground": "#bc93ff",
           "properties": {
-            "time_format": "Monday <#ffffff>at</> 3:04 PM"
+            "time_format": "Mon, 02.01 <#ffffff>|</> 15:04"
           },
           "style": "diamond",
           "template": " {{ .CurrentDate | date .Format }} ",
@@ -47,6 +47,12 @@
           "foreground": "#a9ffb4",
           "style": "plain",
           "type": "text"
+        },
+        {
+          "type": "kubectl",
+          "style": "diamond",
+          "foreground": "#ceccae",
+          "template": "{{if .Namespace}}[{{.User}}:{{.Context}}]{{end}}"
         },
         {
           "foreground": "#a9ffb4",
