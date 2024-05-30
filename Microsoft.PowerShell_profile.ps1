@@ -22,18 +22,22 @@ function pyf {
 }
 
 function setenv ([string]$case) {
-    if ($case -eq 'srv-a' ) {
-        $env:port = 5000
-        $env:target_url = "http://localhost:5001/health_check"
-        $env:role = "service-a"
-        Write-Output  "env set role=$env:role, port=$env:port, target=$env:target_url" 
-    } elseif ($case -eq 'srv-b' ) {
-        $env:port = 5001
-        $env:target_url = "http://localhost:5000/health_check"
-        $env:role = "service-b"
-        Write-Output "env's set role=$env:role, port=$env:port, target=$env:target_url"
-    } else {
-        Write-Output "so vars for $case" 
+
+    switch ($case) {
+        'srv-a' {
+            $env:port = 5000
+            $env:target_url = "http://localhost:5001/health_check"
+            $env:role = "service-a"
+            Write-Output  "env set role=$env:role, port=$env:port, target=$env:target_url" 
+        }
+        'srv-b' {
+            $env:port = 5001
+            $env:target_url = "http://localhost:5000/health_check"
+            $env:role = "service-b"
+            Write-Output "env's set role=$env:role, port=$env:port, target=$env:target_url"
+        }
+
+        Default { Write-Output "Unexpected case: $case" }
     }
 }
 
